@@ -1,0 +1,44 @@
+public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Myholder> {
+
+    ArrayList<ModelClass> detailsList;
+    Context pcontext;
+
+    public UserAdapter(ArrayList<ModelClass> detailsList, Context pcontext) {
+        this.detailsList = detailsList;
+        this.pcontext = pcontext;
+    }
+
+    @NonNull
+    @Override
+    public Myholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v= LayoutInflater.from(pcontext).inflate(R.layout.user_card,parent,false);
+        return new Myholder(v);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull Myholder holder, int position) {
+
+        holder.mName.setText(detailsList.get(position).getName());
+        holder.mProfession.setText(detailsList.get(position).getProfession());
+        holder.mAge.setText(detailsList.get(position).getAge());
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return detailsList.size();
+    }
+
+    public class Myholder extends RecyclerView.ViewHolder {
+
+        TextView mName,mProfession,mAge;
+
+        public Myholder(@NonNull View itemView) {
+            super(itemView);
+
+            mName=itemView.findViewById(R.id.name);
+            mProfession=itemView.findViewById(R.id.profession);
+            mAge=itemView.findViewById(R.id.age);
+        }
+    }
+}
